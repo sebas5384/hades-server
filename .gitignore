@@ -76,3 +76,4 @@ supervisord.pid
 # Local files #
 ###############
 conf.local.js
+.env

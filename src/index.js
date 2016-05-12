@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+import requireEnv from 'require-environment-variables'
+
 import boot from 'redux-boot'
 import bootExpress from 'redux-boot-express'
 import bootPassportExpress from './modules/sandbox/passportExpress'
@@ -5,24 +8,36 @@ import bootPassportGoogle from './modules/sandbox/passportGoogle'
 
 import hadesUsers from './modules/hades/users'
 
+// Load info from .env if exist.
+dotenv.config()
+
+// Verify required env vars.
+requireEnv([
+  'BASE_URL',
+  'GOOGLE_CLIENT_API',
+  'GOOGLE_PROJECT_ID',
+  'GOOGLE_CLIENT_SECRET',
+  'GOOGLE_REDIRECT_URI'
+])
+
 const initialState = {
   passport: {
-    callbackUrl: 'http://localhost:3000/auth/google/callback'
+    callbackUrl: process.env.BASE_URL + '/auth/google/callback'
   },
   secrets: {
     session: {
-      secret: 'hadesi nthaair'
+      secret: process.env.SESSION_SECRET || 'hades rocks'
     },
     google: {
-      "client_id": "957273097582-aj9547lra01f6e1np807re9k283qbni6.apps.googleusercontent.com",
-      "project_id": "hades-1307",
-      "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-      "token_uri": "https://accounts.google.com/o/oauth2/token",
-      "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-      "client_secret": "yZul7UN-oIsaPmBf8Y2mJVu5",
-      "redirect_uris": [
-        "urn:ietf:wg:oauth:2.0:oob",
-        "http://localhost"
+      'client_id': process.env.GOOGLE_CLIENT_API,
+      'project_id': process.env.GOOGLE_PROJECT_ID,
+      'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
+      'token_uri': 'https://accounts.google.com/o/oauth2/token',
+      'auth_provider_x509_cert_url': 'https://www.googleapis.com/oauth2/v1/certs',
+      'client_secret': process.env.GOOGLE_CLIENT_SECRET,
+      'redirect_uris': [
+        'urn:ietf:wg:oauth:2.0:oob',
+        process.env.GOOGLE_REDIRECT_URI || 'http://localhost'
       ]
     }
   }

@@ -1,3 +1,5 @@
+import dotenv from 'dotenv'
+import requireEnv from 'require-environment-variables'
 import express from 'express'
 import passport from 'passport'
 import cookieParser from 'cookie-parser'
@@ -5,16 +7,26 @@ import bodyParser from 'body-parser'
 import expressSession from 'express-session'
 import {OAuth2Strategy as passportGoogle} from 'passport-google-oauth'
 
+// Load env vars from .env if exist.
+dotenv.config()
+
+// Verify required env vars.
+requireEnv([
+  'GOOGLE_CLIENT_API',
+  'GOOGLE_PROJECT_ID',
+  'GOOGLE_CLIENT_SECRET'
+])
+
 const googleInfo = {
-  "client_id": "957273097582-aj9547lra01f6e1np807re9k283qbni6.apps.googleusercontent.com",
-  "project_id": "hades-1307",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://accounts.google.com/o/oauth2/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_secret": "yZul7UN-oIsaPmBf8Y2mJVu5",
-  "redirect_uris": [
-    "urn:ietf:wg:oauth:2.0:oob",
-    "http://localhost"
+  'client_id': process.env.GOOGLE_CLIENT_API,
+  'project_id': process.env.GOOGLE_PROJECT_ID,
+  'auth_uri': 'https://accounts.google.com/o/oauth2/auth',
+  'token_uri': 'https://accounts.google.com/o/oauth2/token',
+  'auth_provider_x509_cert_url': 'https://www.googleapis.com/oauth2/v1/certs',
+  'client_secret': process.env.GOOGLE_CLIENT_SECRET,
+  'redirect_uris': [
+    'urn:ietf:wg:oauth:2.0:oob',
+    'http://localhost'
   ]
 }
 
@@ -22,7 +34,7 @@ const app = express()
 
 app.use(cookieParser())
 app.use(bodyParser())
-app.use(expressSession({ secret: 'keyboard cat' }))
+app.use(expressSession({ secret: 'hades rocks' }))
 app.use(passport.initialize())
 app.use(passport.session())
 

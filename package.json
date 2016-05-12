@@ -13,12 +13,14 @@
   "dependencies": {
     "body-parser": "^1.15.1",
     "cookie-parser": "^1.4.1",
+    "dotenv": "^2.0.0",
     "express": "^4.13.4",
     "express-session": "^1.13.0",
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "redux-boot": "^0.1.2",
-    "redux-boot-express": "choko-org/redux-boot-express#master"
+    "redux-boot-express": "choko-org/redux-boot-express#master",
+    "require-environment-variables": "^1.1.2"
   },
   "devDependencies": {
     "babel": "^6.5.2",

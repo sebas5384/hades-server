@@ -21,11 +21,6 @@ const middleware = {
       }
     )
 
-    const ensureAuthenticated = (req, res, next) => {
-      if (req.isAuthenticated()) return next()
-      res.redirect('/')
-    }
-
     httpServer.get('/logged', ensureAuthenticated, (req, res) => {
       const imageUrl = req.user.photos[0].value
       res.send('<img src="'+ imageUrl +'" alt="" /><br /><h1>HEY YOU ARE LOGGED</h1>')
@@ -59,4 +54,9 @@ const middleware = {
 
 export default {
   middleware
+}
+
+const ensureAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) return next()
+  res.redirect('/')
 }
