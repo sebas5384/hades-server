@@ -1,6 +1,6 @@
 import passport from 'passport'
-import {INIT as PASSPORT_INIT} from '../sandbox/passportExpress'
-import {SUCCESS as PASSPORT_GOOGLE_SUCCESS} from '../sandbox/passportGoogle'
+import {INIT as PASSPORT_INIT} from 'modules/sandbox/passportExpress'
+import {SUCCESS as PASSPORT_GOOGLE_SUCCESS} from 'modules/sandbox/passportGoogle'
 import {HTTP_BOOT} from 'redux-boot-express'
 
 const middleware = {

@@ -1,7 +1,7 @@
 import {OAuth2Strategy as passportGoogle} from 'passport-google-oauth'
 import {createAction} from 'redux-actions'
 
-import {INIT as PASSPORT_INIT} from '../passportExpress'
+import {INIT as PASSPORT_INIT} from 'modules/sandbox/passportExpress'
 
 const middleware = {
   
