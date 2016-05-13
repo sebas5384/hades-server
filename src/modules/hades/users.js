@@ -28,7 +28,7 @@ const middleware = {
 
     httpServer.get('/', (req, res) => {
       if (req.isAuthenticated()) {
-        res.send('<h1>Want to logout '+ req.user.name +'?</h1><br /><a href="/logout">logout</a>')
+        res.send('<h1>Want to logout '+ req.user.name.givenName +'?</h1><br /><a href="/logout">logout</a>')
       }
       else {
         res.send('YOU NEED TO LOGIN:<br/><a href="/auth/google">login with google</a>')

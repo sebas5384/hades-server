@@ -19,7 +19,7 @@
     "passport": "^0.3.2",
     "passport-google-oauth": "^1.0.0",
     "redux-boot": "^0.1.2",
-    "redux-boot-express": "choko-org/redux-boot-express#master",
+    "redux-boot-express": "^0.1.3",
     "require-environment-variables": "^1.1.2"
   },
   "devDependencies": {
